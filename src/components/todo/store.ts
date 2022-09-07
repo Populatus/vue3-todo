@@ -4,9 +4,10 @@ import { useLocalStorage } from '@vueuse/core'
 export interface ITodoProps {
   list: ITodoItem[];
 }
+type ITodoTypes = ITodoProps['list']
 export const useTodoStore = defineStore("todo", () => {
-  const list = $ref<ITodoItem[]>(useLocalStorage('todo-list', []));
-  const donelist = $computed(() => {
+  const list: ITodoTypes = $ref(useLocalStorage('todo-list', []));
+  const donelist: ITodoTypes = $computed(() => {
     return list.filter((item) => item.done);
   })
   const addTodo = (text: string) => {
