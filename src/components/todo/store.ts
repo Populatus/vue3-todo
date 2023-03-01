@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import {computed} from 'vue'
 import type { ITodoItem } from "./todo";
 import { useLocalStorage } from '@vueuse/core'
 export interface ITodoProps {
@@ -7,7 +8,7 @@ export interface ITodoProps {
 type ITodoTypes = ITodoProps['list']
 export const useTodoStore = defineStore("todo", () => {
   const list: ITodoTypes = $ref(useLocalStorage('todo-list', []));
-  const donelist: ITodoTypes = $computed(() => {
+  const donelist = computed(() => {
     return list.filter((item) => item.done);
   })
   const addTodo = (text: string) => {
@@ -18,8 +19,8 @@ export const useTodoStore = defineStore("todo", () => {
     };
     list.push(item);
   }
-  const editTodo = (item: ITodoItem) => {
-    item.done = !item.done;
+  const editTodo = (index: number) => {
+    list[index].done = !list[index].done
   };
   const removeTodo = (index: number) => {
     list.splice(index, 1);

@@ -13,7 +13,7 @@ defineEmits<EmitTypes>()
     <div v-for="(item, index) in list" :key="item.id" class="todo-item group">
       <div class="flex">
         <Icon
-          @click="$emit('edit', item)"
+          @click="$emit('edit', index)"
           icon="carbon:checkmark-filled"
           class="mr-4 text-28px cursor-pointer"
           :class="[item.done ? 'text-dark-50/50 hover:text-dark-50/20' : 'text-green-500 hover:text-green-500/50']"
