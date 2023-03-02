@@ -1,0 +1,13 @@
+version: '3'
+services:
+  vue3-todo-web:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8888:1024"
+    networks:
+      - vue3-todo-web
+networks:
+  vue3-todo-web:
+    driver: bridge
